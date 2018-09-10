@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "maidan-d79d9",
+  "private_key_id": "290bf03b71408e6cd0c2b1628e26ecd85e8c27d5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCUlhZ1lHnEP+32\naEr0tw92Sd3lFAYzIlI1Krs67ATg9TKoi5EnqPhKvyYDoajjgFDVryWP8Gdts/DE\nkidxp4EFrTtmraOpftaR+fS13GxYAyHLUS6GVLF+hUNPu4pehi6eYiia9lGvYvhv\nT/1JXMkkaDBZVRv0kVtoBdKdQGpJVSJOhyKT+Ozd/K2zaohAv5ZABq0B138KaoEO\nBn7DDp344SJ0EZ2KhMGeOF1ftH2hIibK38nAisO/KaVmuq4u//1y3awWCAH/6XAS\naGrxEcKTAjwrj/LLPUzaXLVuzVdJnxRdH2CLT/P/v8xae/MS2YRNhsnF9rtH4eeI\nI1sVsWrtAgMBAAECggEAGAIRQnHZY++Vdk8/Lz/F6I3CZAGCh/AXet467ugUWLnd\ns9SLQW6Aoek1Tfhotsu0o/Y/Gj0UpSniMQzRgUB4rS9irfJIA7rKFj+ePeVN/0GQ\nTA8DtrJIFKKZL/CkSKYjMbW4DGPY6n8SF8BDs38hw/duunxxPijfbVUlhQGTuuHe\nvF1DeSLM8+UcFe/yCsM1i/IrJbpyoUaqeUf58T54kpWADAAkLTeWi7mPkyUIvXCs\ncVuO2crr4gPu6tuWAifjxI/PTHnIJZZVP9YNc6lis0n2DMQkHGrTnULMShLo03UR\nDWXul7Gux4OjIaNbCbrD5fchvj8K1fif2Fq9A1hIyQKBgQDO6/rRuQjGPYTvfh7U\nbYmprKU56WRg1RbaF4sVQAmyag0gTyNjKV8scz1NL1eWylwdIMZOeYSYZxlyb+rz\nfdS9yPmVdQtT5ConzrQ5pp8o01U/fzkxBwiVQIM3vi1YX83jLFhihq8TlI8nhv+A\nyI0yfCn7IxFmnuJeZ4BOdcNvZQKBgQC31A1KMPdEtunEXBWg5AAexbVx6dS/e8LH\n33lrFwePSO9lYOMgkc48huxn2aesVDQ57hS2xVQIwzUTBv8wXcc02KaF3YbHi0yf\nPNY39UNoSZ30Kfrt6+dOfXCCAJe0u/Jig+9rfl0ESlNTeZ7Fdr5Q3pFRORdPvXg/\niCd6ylBo6QKBgQDH6MyF2dJUVBMeniaC7ODXAGkQrh/APZ66TYydlyTHLhZIZKy3\nnLzKYPuUmmxwzkh4C7YLEvO7mb/IA8BmRedHA+e9MTskbYcctmMAX63c72+ozO0g\nJL9yEsWzERUWEFkFZU5uwdhbfmdftNkcPqXLZJHag2LIVjA1LKGVK8kI0QKBgGov\nMv4ICszGW4HxLw0gpnEgAw8p4po5AuoxTBFv3A4IM0B8FrZZgqezyBq0vwXsHb7Y\np15r3X6yQ5YaFI37nXYJLydkLtZUwI26toLcSXOUEolXNnr4KURNcQ+nB/p+FiSR\n0VpmQ5SW2kr9lZi6XnSYG5ivQaft6efI3gUvmAMBAoGAU6CWdVqu6O6qdcIZq9/2\nlzIbXLlmuQiT5H6yQTyq7UFgWsIE/jhCS40oEiEsD4gOcRlMxfa4aWM6lJxaHjbT\n5WPm0NCQYiGmCTfIQ2bd5JJBiKKY94un6KcEGjGc4+m07iZ/OpqWl/j/SHIvXqay\nrGpZzt7qxndlBWDmNK6k5KY=\n-----END PRIVATE KEY-----\n",
+  "client_email": "maidan-backend-firebase@maidan-d79d9.iam.gserviceaccount.com",
+  "client_id": "106199333223950662803",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://accounts.google.com/o/oauth2/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/maidan-backend-firebase%40maidan-d79d9.iam.gserviceaccount.com"
+}
