@@ -2,27 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../../db_connectivity/firebaseConnection').db;
 
-// //To save users image
-// const multer = require('multer');
-// const destination = multer.diskStorage({
-//     destination: function(req, file, cb){
-//         cb(null, 'assets/uploads/venue/images/')
-//     },
-//     filename: function(req, file, cb) {
-//         console.log(file);
-//         var fileObj = {
-//           "images/png": ".png",
-//           "images/jpeg": ".jpeg",
-//           "images/jpg": ".jpg"
-//         }
-//         if (fileObj[file.mimetype] == undefined)
-//             cb(new Error("file format not valid"));
-//         else
-//             cb(null, file.fieldname + '-' + Date.now() + fileObj[file.mimetype]);
-//     }
-// });
-// const upload = multer({storage: destination});
-
 const collectionRef = db.collection('users');
 
 const response = (res, code, statusMessage, payload, message) => {
@@ -36,35 +15,36 @@ const response = (res, code, statusMessage, payload, message) => {
 }
 
 //For client app only getting all venues 
-router.get('/selectedVenues', function(req,res){
-    let payload = [];
-
-    // returning data after checking country, city
-    return collectionRef.get()
-    .then((snapshot)=>{
-        console.log('Country ', req.query.country, ' City ', req.query.city)
-        snapshot.forEach(user => {
-            console.log("User", user);
-            if (user.data().isOwner){
-                collectionRef.doc(user.id).collection('venues').get()
-                .then(snapshot =>{
-                    snapshot.forEach((doc)=>{
-                        if (doc.data().location.country == req.query.country && doc.data().location.city == req.query.city){
-                            console.log(doc.id, '=>', doc.data());
-                            payload.push({
-                                id: doc.id,
-                                data: doc.data()
-                            });
-                        }
-                    });
-                    console.log("Payload", payload)
-                    response(res, 200, 'Okay', payload, 'Selected venues');
-                }).catch((err)=>{
-                    console.log('No venue of this user', err);        
-                });
-            }
+router.get('/selectedVenues',function(req,res){
+    return collectionRef.where('isOwner', '==', true).get()
+    .then(snapshot => {
+        var venues = [];
+        snapshot.docs.map(user => {
+            console.log('User', user);
+            venues.push(collectionRef.doc(user.id).collection('venues').get());
         });
-    }).catch((err)=>{
+        return Promise.all(venues);
+    }).then(snapshots => {
+        let payload = [];
+        snapshots.forEach(venues => {
+            console.log('Venues', venues);
+            venues.docs
+                .filter(doc => 
+                    doc.data().location.country == req.query.country && 
+                    doc.data().location.city == req.query.city
+                )
+                .map(doc => 
+                    payload.push({
+                        id: doc.id,
+                        data: doc.data()
+                    })
+                ) 
+        });
+        return payload ;
+    }).then(payload => {
+        console.log('Payload', payload);
+        response(res, 200, "Okay", payload, "Selected venues");
+    }).catch(err => {
         console.log('Error getting documents', err);        
         response(res, 404, 'Data not found', null, 'No data available');
     });

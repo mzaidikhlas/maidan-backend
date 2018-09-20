@@ -18,6 +18,28 @@ return response(res,404,'Error', null,'Yo');
 });
 
 //Client usage
+router.get('/getUserBookings/:id', function(req,res){
+    console.log('In route with id ', req.params.id);
+    let payload = [];
+    return collectionRef.get()
+    .then(snapshot => {
+        snapshot.forEach(booking => {
+            if (booking.data().user.id == req.params.id){
+                payload.push({
+                    id: booking.id,
+                    data: booking.data()
+                });
+            }
+        });
+        console.log("Payload ", payload);
+        response(res, 200, 'Okay', payload,'All bookings of selected user');
+    }).catch(err => {
+        console.log("Error", err);
+        response(res, 404, 'Bad Request', payload,'Error getting bookings of user');
+    });
+});
+
+//Client usage
 router.get('/getVenueBookings/:id', function(req,res){
     console.log('Idhr hai');
     let payload = [];
