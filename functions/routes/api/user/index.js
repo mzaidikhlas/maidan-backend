@@ -2,27 +2,6 @@ const express = require('express');
 const router = express.Router();
 const db = require('../../../db_connectivity/firebaseConnection').db;
 
-// const multer = require('multer');
-// const destination = multer.diskStorage({
-//     destination: function(req, file, cb){
-//         cb(null, 'assets/uploads/users/image/')
-//     },
-//     filename: function(req, file, cb) {
-//         console.log(file);
-//         var fileObj = {
-//           "image/png": ".png",
-//           "image/jpeg": ".jpeg",
-//           "image/jpg": ".jpg"
-//         }
-
-//         if (fileObj[file.mimetype] == undefined)
-//             cb(new Error("file format not valid"));
-//         else
-//             cb(null, file.fieldname + '-' + Date.now() + fileObj[file.mimetype]);
-//     }
-// });
-// const upload = multer({storage: destination});
-
 const collectionRef = db.collection('users');
 
 const response = (res, code, statusMessage, payload, message) => {
@@ -42,11 +21,11 @@ router.get('/getByPhone', function (req, res){
     var date = new Date();
 
     console.log("Phone ",req.query.phone);
-    console.log("Time", date.getTime());
+    console.log("Start time", date.getTime());
     return collectionRef.where("phone", "==", req.query.phone).get()
         .then((snapshot) => {
             console.log(snapshot);
-
+            
             var data = snapshot.docs[0].data()
             var id = snapshot.docs[0].id
             if (data.isOwner){
@@ -91,6 +70,7 @@ router.get('/getByPhone', function (req, res){
                     });
                     console.log("Payload", payload);
                     console.log("Response time", date.getTime());
+                    console.log("End time", date.getTime());
                     response(res, 200, 'Okay', payload, 'Login User');
                 }).catch(err => {
                     console.log("Error", err)
@@ -125,49 +105,6 @@ router.get('/getByEmail', function (req, res){
         });   
 });
 
-// router.get('/', function (req, res){
-//     let payload = [];
-
-//     if (req.res.locals.email != null || req.res.locals.email != undefined || req.res.locals.email != "")
-//         console.log(req.res.locals.email)
-        
-//     return collectionRef.get()
-//         .then((snapshot) => {
-//             console.log(snapshot);
-//                 snapshot.forEach((doc) => {
-//                     console.log(doc.id, '=>', doc.data());
-//                     payload.push({
-//                         id: doc.id,
-//                         data: doc.data()
-//                     });
-//                 });
-//                 response(res, 200, "Okay", payload, "All Venues");
-//         })
-//         .catch((err) => {
-//             console.log('Error getting documents', err);        
-//             response(res, 404, "Data not found", null, "No data available");
-//         });
-// });
-
-// router.get('/:id', function (req, res){
-//     let payload = [];
-//     console.log(req.params.id);
-    
-//     return collectionRef.doc(req.params.id).get()
-//         .then((doc) => {
-//             console.log(doc);
-//             payload.push({
-//                 id: doc.id,
-//                 data: doc.data()
-//             }); 
-//             response(res, 200, "Okay", payload, "Selected Venue");               
-//         })
-//         .catch((err) => {
-//             console.log('Error getting documents', err);
-//             response(res, 404, "Data not found", null, "No user found");
-//         });            
-// });
-
 router.post('/', function (req, res){
 
     let payload = {
@@ -195,22 +132,5 @@ router.post('/', function (req, res){
             response(res, 400, "Bad Request", null, "Some thing is wrong with data");
         }); 
 });
-
-// router.delete('/:id', function (req, res){
-//     console.log(req.params.id);
-//     return collectionRef.doc(req.params.id).delete()
-//         .then(() => {
-//             console.log('Item Deleted');
-//             response(res, 200, "Okay", null, "Item Deleted");
-//         })
-//         .catch((err) => {
-//             console.log('Error getting documents', err);
-//             response(res, 404, "Data not found", null, "No item found");
-//         });
-// });
-
-// router.put('/:id', function (req, res){
-//     response(res, 200, "Okay", null, "Okay");
-// });
 
 module.exports = router;

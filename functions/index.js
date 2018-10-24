@@ -1,6 +1,7 @@
 const functions = require('firebase-functions');
 const express = require('express');
 const bodyParser = require('body-parser');
+// const ejs = require('ejs');
 
 //Setting up express app
 const app = express();
